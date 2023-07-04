@@ -2,17 +2,22 @@ package projeto;
 
 
 public class Consulta implements Comparable<Consulta> {
-
+	private String identificadorPaciente;
     private String sintomas;
     Paciente paciente;
 
-    public Consulta(String sitomas, Paciente paciente) {
+    public Consulta(String sitomas, String identificadorPaciente ,Paciente paciente) {
         this.paciente = paciente;
         this.sintomas = sitomas;
+        this.identificadorPaciente = identificadorPaciente;
     }
 
     public String getSintomas() {
         return sintomas;
+    }
+    
+    public String getIdentificadorPaciente() {
+        return identificadorPaciente;
     }
 
     public Paciente getPaciente() {
@@ -32,4 +37,10 @@ public class Consulta implements Comparable<Consulta> {
         }
         return 0;
     }
+    
+    @Override
+    public String toString() {
+        return paciente.toString() + "\nSintomas: " + getSintomas();
+    }
+    
 }

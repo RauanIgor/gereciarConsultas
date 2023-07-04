@@ -19,5 +19,11 @@ public class Paciente extends Pessoa{
     public boolean isPne() {
         return pne;
     }
+    
+    @Override
+    public String toString() {
+        return "Paciente: " + getNome() + "\nCPF: " + getCpf()+ "\nSexo: " + getSexo()
+        + "\nIdade: " + getIdade() + "\nGestante: " + (isGestante()? "SIM" : "NÃO") + "\nNecessidades Especiais: " + (isPne()? "SIM" : "NÃO");
+    }
 
 }
