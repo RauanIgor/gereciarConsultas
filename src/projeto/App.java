@@ -186,7 +186,7 @@ public class App {
 				}
 			}
 			if (medicoExistente && medicoatual.getAgenda().getQtdVagas() > 0) {
-				System.out.println("===== AGENDAR CONSULTA PARA O MÉDICO " + medicoatual.getNome() + "=====");
+				System.out.println("===== AGENDAR CONSULTA PARA O MÉDICO " + medicoatual.getNome() + " =====");
 
 				boolean gestante = false;
 				boolean pne = false;

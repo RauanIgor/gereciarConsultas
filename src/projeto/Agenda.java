@@ -36,6 +36,7 @@ public class Agenda {
         sb.append("Data: ").append(data).append("\n");
         sb.append("Quantidade de vagas: ").append(qtdVagas).append("\n");
         sb.append("Consultas:\n");
+        sb.append("=====================\n");
         if(consultas.isEmpty()) {
         	sb.append("Nenhuma consulta cadastrada!\n");
         }
@@ -43,6 +44,7 @@ public class Agenda {
         	Collections.sort(consultas);
 	        for (Consulta consulta : consultas) {
 	            sb.append(consulta.toString()).append("\n");
+	            sb.append("=====================\n");
 	        }
         }
         return sb.toString();
