@@ -29,7 +29,7 @@ public class App {
 					visualizarAgendaMedico(medicos);
 					break;
 				case 4:
-					cancelarConsulta();
+					cancelarConsulta(medicos);
 					break;
 				case 5:
 					sair = true;
@@ -163,10 +163,67 @@ public class App {
 
 		}
 	}
-
-	public static void cancelarConsulta() {
-		// Lógica para cancelar uma consulta
-		System.out.println("Cancelamento de Consulta");
+	
+	public static void cancelarConsulta(ArrayList<Medico> medicos) {
+		if (medicos.isEmpty()) {
+			System.out.println("Não existe nenhuma consulta cadastrada no sitema.");
+		}
+		else {
+			Scanner scan = new Scanner(System.in);
+			boolean dadosValidos = false;
+			String CRMMedico = null;
+			String cpfIdentPaciente = null;
+			System.out.println("===== CANCELAR CONSULTA =====");
+			while (!dadosValidos) {
+				try {
+					System.out.print("Informe o Número do CRM do médico para qual a consulta está marcada: ");
+					CRMMedico = scan.nextLine();
+					System.out.print("Informe o CPF do paciente para CANCELAR a consulta: ");
+					cpfIdentPaciente = scan.nextLine();
+					dadosValidos = true;
+				} catch (InputMismatchException e) {
+					System.out.println("Erro: Entrada inválida. Digite novamente.");
+					scan.nextLine();
+				}
+			}
+			boolean medicoExistente = false;
+			Medico medicoatual = null;
+			for (Medico med : medicos) {
+				
+				if (med.getNumCRM().equals(CRMMedico)) {
+					medicoExistente = true;
+					medicoatual = med;
+					break;
+				}
+			}
+			if(medicoExistente) {
+				if (medicoatual.getAgenda().getConsultas().isEmpty()) {
+					System.out.println("Não tem nenhuma consulta marcada para esse Medico.");
+					
+				}
+				else {
+					boolean pacienteEncontrado = false;
+					for (Consulta con : medicoatual.getAgenda().getConsultas()) {
+						if (con.getIdentificadorPaciente().equals(cpfIdentPaciente)) {
+							medicoatual.getAgenda().getConsultas().remove(con);
+							pacienteEncontrado = true;
+							break;
+						}
+					}
+					
+					if (pacienteEncontrado) {
+						System.out.println("CONSULTA CANCELADA COM SUCESSO!!!");
+					} else {
+						
+						System.out.println("ESSE PACIENTE NÃO TEM CONSULTA MARCADA PARA ESSE MÉDICO.");
+					}
+				}
+			}else {
+				System.out.println("Medico não encontrado!!!");
+			}
+			
+			
+		}
 	}
 
 	public static void cadastrarConsulta(ArrayList<Medico> medicos) {
