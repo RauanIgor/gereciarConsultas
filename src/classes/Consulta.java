@@ -1,23 +1,38 @@
-package projeto;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package classes;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
+/**
+ *
+ * @author Rauan
+ */
 public class Consulta implements Comparable<Consulta> {
-	private String identificadorPaciente;
-    private String sintomas;
-    Paciente paciente;
 
-    public Consulta(String sitomas, String identificadorPaciente ,Paciente paciente) {
-        this.paciente = paciente;
+    private String cpf;
+    private String sintomas;
+    private Paciente paciente;
+    
+
+    public Consulta(String sitomas,String cpf) {
+        this.cpf = cpf;
         this.sintomas = sitomas;
-        this.identificadorPaciente = identificadorPaciente;
     }
+
+    
 
     public String getSintomas() {
         return sintomas;
     }
-    
-    public String getIdentificadorPaciente() {
-        return identificadorPaciente;
+
+
+    public String getCpf() {
+        return cpf;
     }
 
     public Paciente getPaciente() {
@@ -34,13 +49,8 @@ public class Consulta implements Comparable<Consulta> {
         }
         if(this.paciente.isGestante() || t.paciente.isPne()){
             return -1;
+            
         }
         return 0;
     }
-    
-    @Override
-    public String toString() {
-        return paciente.toString() + "\nSintomas: " + getSintomas();
-    }
-    
 }
